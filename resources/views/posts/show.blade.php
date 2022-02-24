@@ -10,8 +10,8 @@
                   <div class="card-body">
                   <p class="card-text">内容：{{ $post->body }}</p>
                   <p>投稿日時：{{ $post->created_at }}</p>
-                  <a href="#" class="btn btn-primary">編集する</a>
-                  <form action='#' method='post'>
+                  <a href="{{ rute('postes.edit', $post->id) }}" class="btn btn-primary">編集する</a>
+                  <form action='{{ route('posts.destroy'), $post-> }}' method='post'>
                       <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか？");'>
                   </form>
                   </div>

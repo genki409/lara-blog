@@ -35,11 +35,33 @@ class PostController extends Controller
         return redirect() -> route('posts.index');
     }
 
-    function show()
+    function show($id)
     {
         // postsテーブルから１つのidのデータを取ってくる
         $post = Post::find($id);
         return view('posts.show', ['post'=>$post]);
     }
 
+    function edit($id)
+    {
+        $post = Post::find($id);
+        return view('posts.edit', compact('post'));
+    }
+
+    function update(Request $request, $id)
+    {
+        $post = Post::find($id);
+        $post -> title = $request -> title;
+        $post -> body = $request -> body;
+        $post -> save();
+
+        return view('posts.show', compact('post'));
+    }
+
+    function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('posts.index');
+    }
 }
