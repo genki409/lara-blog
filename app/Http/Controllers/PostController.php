@@ -34,4 +34,12 @@ class PostController extends Controller
 
         return redirect() -> route('posts.index');
     }
+
+    function show()
+    {
+        // postsテーブルから１つのidのデータを取ってくる
+        $post = Post::find($id);
+        return view('posts.show', ['post'=>$post]);
+    }
+
 }
