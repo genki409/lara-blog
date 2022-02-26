@@ -10,8 +10,10 @@
                   <div class="card-body">
                   <p class="card-text">内容：{{ $post->body }}</p>
                   <p>投稿日時：{{ $post->created_at }}</p>
-                  <a href="{{ rute('postes.edit', $post->id) }}" class="btn btn-primary">編集する</a>
-                  <form action='{{ route('posts.destroy'), $post-> }}' method='post'>
+                  <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">編集する</a>
+                  <form action='{{ route('posts.destroy', $post->id) }}' method='post'>
+                    @csrf
+                    @method('delete')
                       <input type='submit' value='削除' class="btn btn-danger" onclick='return confirm("本当に削除しますか？");'>
                   </form>
                   </div>
@@ -26,7 +28,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
           コメント一覧
-          @foreach($post->comments sa $comment)
+          @foreach($post->comments as $comment)
             <div class="card mt-3">
                 <h5 class="card-header">投稿者：{{ $comment->user->name }}</h5>
                 <div class="card-body">
