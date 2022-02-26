@@ -53,3 +53,7 @@ Route::put('/post/{id}', 'PostController@update')->name('posts.update');
 Route::delete('/post/{id}', 'PostController@destroy')->name('posts.destroy');
 
 // Route::resource('/post', 'PostController');
+
+Route::get('/comment/create/{post_id}', 'CommentController@create')->name('comments.create');
+
+Route::post('/comments, 'CommentController@create')->name('comments.create');
